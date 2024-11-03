@@ -76,6 +76,7 @@ docker build -t nginx .
 
 ### After this I successfully build and run the docker compose file I hosted it on http://localhost:8000/
 However as seen in the image the MAC address was wrong and to fix it I looked into the app.py file.
+
 ![Python MAC Address Update](./Images/python-mac-update.png)
 
 ### Python Application Updates
@@ -90,7 +91,7 @@ iface = 'eth0'  # Use Docker's main network interface
 - Accessible at: http://localhost:8000/
 - Ready for AWS deployment
 
-![Successful Deployment](./Images/successful-deployment.png)
+![Locally Deployed](./Images/localhost8000.png)
 
 ## AWS Deployment
 Following successful local testing, the application has been prepared for AWS deployment. Refered to AWS documentation for specific deployment steps in your environment.
