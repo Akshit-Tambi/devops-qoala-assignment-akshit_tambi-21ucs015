@@ -12,20 +12,25 @@ Access the application at [http://15.206.210.135:8000/](http://15.206.210.135:80
 
 ## Initial Setup
 
+### Cloning the repository 
+git clone  [https://github.com/qoala-engineering/devops-internship-challenge.git](https://github.com/qoala-engineering/devops-internship-challenge.git)
+
+cd devops-internship-challenge
+
+
 ### Removing the Original GitHub Remote
-bash
-# Remove the original remote
 git remote remove origin
 
 # Add your personal repository as the new remote
 git remote add origin https://github.com/Akshit-Tambi/devops-qoala-assignment-akshit_tambi-21ucs015.git
+
 git branch -M main
+
 git push -u origin main
 
 
 ## Docker Image Building
 ### Building local-python-app
-bash
 docker build -t local-python-app .
 
 
@@ -38,7 +43,6 @@ docker build -t local-python-app .
 | CMD spelling | Fixed python spelling | Container failed to start due to incorrect command name | ![Python CMD Error](./Images/python-cmd-error.png) |
 
 ### Building local-nginx
-bash
 docker build -t nginx .
 
 
@@ -59,6 +63,8 @@ docker build -t nginx .
 | Volume paths | Corrected volume mapping | Volumes weren't mounting due to incorrect path format |
 | Service exposure | Changed expose to ports | Services weren't accessible due to wrong port configuration |
 | Network type | Fixed bridge spelling | Network creation failed due to incorrect driver name |
+ 
+
 
 ### NGINX Configuration
 #### Fixed Issues in nginx.conf
@@ -67,9 +73,12 @@ docker build -t nginx .
 | Worker processes | Changed worker_process auto to worker_processes auto; | NGINX failed to start due to missing semicolon and plural form | ![NGINX Worker Process Error](./Images/nginx-worker-error.png) |
 | Include directives | Corrected include file references | Configuration loading failed due to incorrect include paths |
 
+
+
+### After this I successfully build and run the docker compose file i hosted it on http://localhost:8000/
 ### Python Application Updates
 Modified MAC address retrieval in app.py:
-python
+
 iface = 'eth0'  # Use Docker's main network interface
 
 *Explanation*: Original code failed to retrieve MAC address consistently in Docker environment; eth0 is the standard Docker network interface.
