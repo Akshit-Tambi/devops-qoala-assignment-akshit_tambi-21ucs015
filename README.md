@@ -21,7 +21,7 @@ cd devops-internship-challenge
 ### Removing the Original GitHub Remote
 git remote remove origin
 
-# Add your personal repository as the new remote
+### Add your personal repository as the new remote
 git remote add origin https://github.com/Akshit-Tambi/devops-qoala-assignment-akshit_tambi-21ucs015.git
 
 git branch -M main
@@ -34,7 +34,7 @@ git push -u origin main
 docker build -t local-python-app .
 
 
-#### Resolved Issues in Python App
+#### Resolved Issues in python dockerfile
 | Issue | Resolution | Explanation | Error Screenshot |
 |-------|------------|-------------|------------------|
 | EXPOSE port in string format | Changed to integer | Docker EXPOSE requires numeric ports, not string values | ![Python Dockerfile EXPOSE Error](./Images/python-expose-error.png) |
@@ -46,7 +46,7 @@ docker build -t local-python-app .
 docker build -t nginx .
 
 
-#### Resolved Issues in NGINX
+#### Resolved Issues in Nginx dockerfile
 | Issue | Resolution | Explanation | Error Screenshot |
 |-------|------------|-------------|------------------|
 | Base image spelling | Corrected latest spelling | Image pull failed due to incorrect tag name | ![NGINX Base Image Error](./Images/nginx-base-error.png) |
@@ -64,7 +64,8 @@ docker build -t nginx .
 | Service exposure | Changed expose to ports | Services weren't accessible due to wrong port configuration |
 | Network type | Fixed bridge spelling | Network creation failed due to incorrect driver name |
  
-
+### After  building and running the docker compose file I found out the error in the logs of the nginx.
+![NGINX Worker Process Error](./Images/nginx-worker-error.png)
 
 ### NGINX Configuration
 #### Fixed Issues in nginx.conf
@@ -73,17 +74,16 @@ docker build -t nginx .
 | Worker processes | Changed worker_process auto to worker_processes auto; | NGINX failed to start due to missing semicolon and plural form | ![NGINX Worker Process Error](./Images/nginx-worker-error.png) |
 | Include directives | Corrected include file references | Configuration loading failed due to incorrect include paths |
 
+### After this I successfully build and run the docker compose file I hosted it on http://localhost:8000/
+However as seen in the image the MAC address was wrong and to fix it I looked into the app.py file.
+![Python MAC Address Update](./Images/python-mac-update.png)
 
-
-### After this I successfully build and run the docker compose file i hosted it on http://localhost:8000/
 ### Python Application Updates
 Modified MAC address retrieval in app.py:
 
 iface = 'eth0'  # Use Docker's main network interface
 
 *Explanation*: Original code failed to retrieve MAC address consistently in Docker environment; eth0 is the standard Docker network interface.
-
-![Python MAC Address Update](./Images/python-mac-update.png)
 
 ## Application Status
 - Successfully built and deployed locally
@@ -93,4 +93,5 @@ iface = 'eth0'  # Use Docker's main network interface
 ![Successful Deployment](./Images/successful-deployment.png)
 
 ## AWS Deployment
-Following successful local testing, the application has been prepared for AWS deployment. Refer to AWS documentation for specific deployment steps in your environment.
+Following successful local testing, the application has been prepared for AWS deployment. Refered to AWS documentation for specific deployment steps in your environment.
+![Project Screenshot](Images/successful-deployment.png)
