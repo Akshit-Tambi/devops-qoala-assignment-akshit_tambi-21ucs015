@@ -6,15 +6,13 @@ import netifaces as ni
 app = Flask(__name__)
 
 def get_mac_address():
-    # Function to get the MAC address of the host
-    for iface in ni.interfaces():
-        try:
-            mac = ni.ifaddresses(iface)[ni.AF_LINK][0]['addr']
-            if mac:
-                return mac
-        except KeyError:
-            continue
-    return "N/A"
+    # Get the MAC address of the container's main network interface (typically eth0 in Docker)
+    iface = 'eth0'
+    try:
+        mac = ni.ifaddresses(iface)[ni.AF_LINK][0]['addr']
+        return mac
+    except KeyError:
+        return "N/A"
 
 @app.route('/')
 def user_info():
